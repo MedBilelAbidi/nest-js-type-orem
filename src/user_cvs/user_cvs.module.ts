@@ -4,12 +4,11 @@ import { CvsService } from './services/cvs/cvs.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserCv } from 'src/typeorm/entities/UserCv';
 import { User } from 'src/typeorm/entities/User';
-import { EducationDegreeService } from './services/education_degree/education_degree.service';
 import { EducationDegree } from 'src/typeorm/entities/Education';
 
 @Module({
     imports: [TypeOrmModule.forFeature([UserCv, User, EducationDegree])],
     controllers: [CvsController],
-    providers: [CvsService, EducationDegreeService]
+    providers: [CvsService],
 })
 export class UserCvsModule {}

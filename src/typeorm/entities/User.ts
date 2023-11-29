@@ -1,5 +1,5 @@
 
-import  { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import  { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Profile } from './Profile';
 import { UserCv } from './UserCv';
 
@@ -14,7 +14,7 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
+  @CreateDateColumn()
   createdAt: Date;
 
   @OneToOne(()=> Profile, { nullable: true } )

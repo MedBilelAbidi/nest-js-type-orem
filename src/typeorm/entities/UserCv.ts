@@ -1,4 +1,4 @@
-import  { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import  { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { User } from './User';
 import { EducationDegree } from './Education';
 
@@ -34,16 +34,17 @@ export class UserCv {
   @Column()
   language: string;
 
-  @Column()
+  @CreateDateColumn()
   createdAt: Date;
 
-  @Column()
+  @UpdateDateColumn ()
   updatedAt: Date;
 
   @ManyToOne(()=> User , (user)=> user.userCvs)
   user: User
 
-  @OneToMany(()=> EducationDegree, (degree)=> degree.userCV)
-  @JoinColumn()
-  education_degree : EducationDegree[];  
+  @OneToMany(()=> EducationDegree, (degree)=> degree.userCV, {
+    cascade: true, // <= here
+})
+  education : EducationDegree[];  
 }

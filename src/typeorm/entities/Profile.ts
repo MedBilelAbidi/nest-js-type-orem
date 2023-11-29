@@ -1,5 +1,5 @@
 
-import  { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import  { Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from './User';
 
 @Entity({ name: 'user_profile' })
@@ -13,7 +13,7 @@ export class Profile {
   @Column()
   lastName: string;
 
-  @Column()
+  @CreateDateColumn()
   createdAt: Date;
   
   @Column()

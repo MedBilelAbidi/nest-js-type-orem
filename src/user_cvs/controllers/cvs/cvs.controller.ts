@@ -8,11 +8,11 @@ export class CvsController {
     constructor(private userCVservice: CvsService){}
     @Get()
     getAllUserCv(){
-        this.userCVservice.fetchUserCvs()
+       return this.userCVservice.fetchUserCvs()
     }
     @Post(':id' )
-    createUserCv(@Param('id', ParseIntPipe) id: number, @Body() @Body() createUserCvDto: CreateUserCVsDto){
-        return this.userCVservice.createUserProfile(id , createUserCvDto)
+    createUserCv(@Param('id', ParseIntPipe) id: number, @Body() createUserCvDto: CreateUserCVsDto){
+        return this.userCVservice.createUserCv(id , createUserCvDto)
     }
     @Delete(':id')
     deleteUserCv(@Param('id', ParseIntPipe) id: number){
@@ -23,7 +23,7 @@ export class CvsController {
         return this.userCVservice.fetchUserCvById(id)
     }
     @Put(':id')
-    updateUserCv(){
-        
+    updateUserCv(@Param('id', ParseIntPipe) id: number, @Body() updateUserCvDto: CreateUserCVsDto){
+        return this.userCVservice.updateUserCv(id, updateUserCvDto)
     }
 }

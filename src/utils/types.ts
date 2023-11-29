@@ -15,6 +15,7 @@ export type CreateUserProfileParams = {
 };
 
 export type CreateUserCvsParams = {
+  id?: number
   name: string;
   addresse: string;
   tel: string;
@@ -24,4 +25,11 @@ export type CreateUserCvsParams = {
   skills: string;
   certif: string;
   language: string;
+  education?: CvPropsDetails[]
 };
+
+export type CvPropsDetails = {
+name: string
+date: string;
+discription: string
+}

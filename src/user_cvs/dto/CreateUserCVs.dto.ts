@@ -1,3 +1,5 @@
+import { CreateCvDetailsDto } from "./createCvDetails.dto";
+
 export type CreateUserCVsDto = {
     name: string;
     addresse: string;
@@ -8,4 +10,5 @@ export type CreateUserCVsDto = {
     skills: string;
     certif: string;
     language: string;
+    education:CreateCvDetailsDto[]
   };

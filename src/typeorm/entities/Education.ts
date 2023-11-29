@@ -1,4 +1,4 @@
-import  { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import  { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { UserCv } from './UserCv';
 
 @Entity({ name: 'education_degree' })
@@ -17,12 +17,15 @@ export class EducationDegree {
 
 
 
-  @Column()
+  @CreateDateColumn()
   createdAt: Date;
 
-  @Column()
+  @UpdateDateColumn ()
   updatedAt: Date;
 
-  @ManyToOne(()=> UserCv , (cv)=> cv.education_degree)
+  @ManyToOne(()=> UserCv , (cv)=> cv.education, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   userCV: UserCv
 }

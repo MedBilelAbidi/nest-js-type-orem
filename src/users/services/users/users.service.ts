@@ -13,7 +13,7 @@ export class UsersService {
   ) {}
 
   fetchUsers() {
-    return this.userRepoitory.find({relations: ['profile']})
+    return this.userRepoitory.find({relations: ['profile','userCvs']})
   }
 
   createUser(userDetail: CreateUserParams) {
