@@ -12,10 +12,9 @@ export type CreateUserProfileParams = {
   lastName: string;
   createdAt: Date;
   age: number;
-};
+}; 
 
 export type CreateUserCvsParams = {
-  id?: number
   name: string;
   addresse: string;
   tel: string;
@@ -26,6 +25,25 @@ export type CreateUserCvsParams = {
   certif: string;
   language: string;
   education?: CvPropsDetails[]
+  experience?: CvPropsDetails[]
+  projects?: CvPropsDetails[]
+  educationProjects?: CvPropsDetails[]
+};
+
+export type UpdateUserCvsParams  = {
+  name: string;
+  addresse: string;
+  tel: string;
+  email: string;
+  title: string;
+  bio: string;
+  skills: string;
+  certif: string;
+  language: string;
+  education?: CvPropsDetails[]
+  experience?: CvPropsDetails[]
+  projects?: CvPropsDetails[]
+  educationProjects?: CvPropsDetails[]
 };
 
 export type CvPropsDetails = {

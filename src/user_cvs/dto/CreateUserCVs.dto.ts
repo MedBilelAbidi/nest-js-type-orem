@@ -1,4 +1,4 @@
-import { CreateCvDetailsDto } from "./createCvDetails.dto";
+import { CreateCvDetailsDto } from "./CreateCvDetails.dto";
 
 export type CreateUserCVsDto = {
     name: string;
@@ -10,5 +10,8 @@ export type CreateUserCVsDto = {
     skills: string;
     certif: string;
     language: string;
-    education:CreateCvDetailsDto[]
+    education?: CreateCvDetailsDto[]
+    experience?: CreateCvDetailsDto[]
+    projects?: CreateCvDetailsDto[]
+    educationProjects?: CreateCvDetailsDto[]
   };

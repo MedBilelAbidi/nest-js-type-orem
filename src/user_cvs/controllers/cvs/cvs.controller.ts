@@ -1,5 +1,6 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Patch } from '@nestjs/common';
 import { CreateUserCVsDto } from 'src/user_cvs/dto/CreateUserCVs.dto';
+import { UpateUserCVsDto } from 'src/user_cvs/dto/UpateUserCVs.dto';
 import { CvsService } from 'src/user_cvs/services/cvs/cvs.service';
 
 @Controller('cvs')
@@ -22,8 +23,8 @@ export class CvsController {
     getCvByUserId(@Param('id', ParseIntPipe) id: number){
         return this.userCVservice.fetchUserCvById(id)
     }
-    @Put(':id')
-    updateUserCv(@Param('id', ParseIntPipe) id: number, @Body() updateUserCvDto: CreateUserCVsDto){
+    @Patch(':id')
+    updateUserCv(@Param('id', ParseIntPipe) id: number, @Body() updateUserCvDto: UpateUserCVsDto){
         return this.userCVservice.updateUserCv(id, updateUserCvDto)
     }
 }

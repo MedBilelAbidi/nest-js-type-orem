@@ -2,8 +2,8 @@ import  { Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { UserCv } from './UserCv';
 import { AbstractEntity } from 'src/database/abstract.entity';
 
-@Entity({ name: 'education_degree' })
-export class EducationDegree extends AbstractEntity<EducationDegree> {
+@Entity({ name: 'experience' })
+export class Experience extends AbstractEntity<Experience> {
 
 
 

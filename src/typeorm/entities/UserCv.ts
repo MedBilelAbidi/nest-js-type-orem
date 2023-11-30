@@ -1,6 +1,7 @@
 import  { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { User } from './User';
 import { EducationDegree } from './Education';
+import { Experience } from './Experience';
 
 @Entity({ name: 'user_cv' })
 export class UserCv {
@@ -43,8 +44,9 @@ export class UserCv {
   @ManyToOne(()=> User , (user)=> user.userCvs)
   user: User
 
-  @OneToMany(()=> EducationDegree, (degree)=> degree.userCV, {
-    cascade: true, // <= here
-})
+  @OneToMany(()=> EducationDegree, (degree)=> degree.userCV ,  { cascade: true, eager: true} )
   education : EducationDegree[];  
+
+  @OneToMany(()=> Experience, (degree)=> degree.userCV ,  { cascade: true, eager: true} )
+  experience : Experience[];  
 }
