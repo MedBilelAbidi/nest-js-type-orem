@@ -2,12 +2,12 @@ import  { Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { UserCv } from './UserCv';
 import { AbstractEntity } from 'src/database/abstract.entity';
 
-@Entity({ name: 'education_degree' })
-export class EducationDegree extends AbstractEntity<EducationDegree> {
+@Entity({ name: 'projects' })
+export class Projects extends AbstractEntity<Projects> {
 
 
 
-  @ManyToOne(()=> UserCv , (cv)=> cv.experience , { orphanedRowAction: 'delete' })
+  @ManyToOne(()=> UserCv , (cv)=> cv.projects , { orphanedRowAction: 'delete' })
   @JoinColumn()
   userCV: UserCv
 }

@@ -8,7 +8,10 @@ import { Profile } from './typeorm/entities/Profile';
 import { UserCv } from './typeorm/entities/UserCv';
 import { UserCvsModule } from './user_cvs/user_cvs.module';
 import { EducationDegree } from './typeorm/entities/Education';
-
+import { Experience } from './typeorm/entities/Experience';
+import { Projects } from './typeorm/entities/Projects';
+import { Education_Projects } from './typeorm/entities/Education_Projects';
+ 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -18,9 +21,10 @@ import { EducationDegree } from './typeorm/entities/Education';
       username: 'root',
       password: '',
       database: 'test_nestjs_db',
-      entities: [User, Profile, UserCv, EducationDegree ],
+      entities: [User, Profile, UserCv, EducationDegree, Experience, Projects, Education_Projects ],
       synchronize: true,
     }),
+
     UsersModule,
     UserCvsModule,
   ],

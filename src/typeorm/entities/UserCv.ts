@@ -2,6 +2,8 @@ import  { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGenerat
 import { User } from './User';
 import { EducationDegree } from './Education';
 import { Experience } from './Experience';
+import { Projects } from './Projects';
+import { Education_Projects } from './Education_Projects';
 
 @Entity({ name: 'user_cv' })
 export class UserCv {
@@ -47,6 +49,12 @@ export class UserCv {
   @OneToMany(()=> EducationDegree, (degree)=> degree.userCV ,  { cascade: true, eager: true} )
   education : EducationDegree[];  
 
-  @OneToMany(()=> Experience, (degree)=> degree.userCV ,  { cascade: true, eager: true} )
+  @OneToMany(()=> Experience, (exp)=> exp.userCV ,  { cascade: true, eager: true} )
   experience : Experience[];  
+
+  @OneToMany(()=> Projects, (project)=> project.userCV ,  { cascade: true, eager: true} )
+  projects : Projects[]; 
+  
+  @OneToMany(()=> Education_Projects , (educationProject)=> educationProject.userCV ,  { cascade: true, eager: true} )
+  educationProjects : Education_Projects[];  
 }
