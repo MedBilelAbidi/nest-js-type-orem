@@ -24,6 +24,7 @@ export type CreateUserCvsParams = {
   skills: string;
   certif: string;
   language: string;
+  pictures?: any;
   education?: CvPropsDetails[]
   experience?: CvPropsDetails[]
   projects?: CvPropsDetails[]

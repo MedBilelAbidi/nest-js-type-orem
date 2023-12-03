@@ -5,6 +5,7 @@ import { UserCv } from 'src/typeorm/entities/UserCv';
 import { User } from 'src/typeorm/entities/User';
 import { CreateUserCvsParams, UpdateUserCvsParams } from 'src/utils/types';
 import { EducationDegree } from 'src/typeorm/entities/Education';
+import { Pictures } from 'src/typeorm/entities/Pictures';
 
 @Injectable()
 export class CvsService {
@@ -13,25 +14,25 @@ export class CvsService {
     @InjectRepository(User) private userRepoitory: Repository<User>,
     @InjectRepository(User) private userEducationRepoitory: Repository<EducationDegree>,
 
-    private readonly entityManager: EntityManager,
+    private readonly entityManager: EntityManager
 
   ) {}
 
   fetchUserCvs() {
-    return this.userCvRepoitory.find({ relations: ['education'] });
+    return this.userCvRepoitory.find();
   }
   fetchUserCvById(id: number) {
     return this.userCvRepoitory.findOne({where : {
       id : id
     }
   , relations : {
-    education : true
+    education : true,
   }},);
   }
   deleteUserCvById(id: number) {
     return this.userCvRepoitory.delete({ id });
   }
-  async createUserCv(id: number, userCvDetails: CreateUserCvsParams) {
+  async createUserCv(id: number, userCvDetails: CreateUserCvsParams, file: Express.Multer.File) {
     const user = await this.userRepoitory.findOneBy({ id });
     if (!user) {
       throw new HttpException('user not found', HttpStatus.BAD_REQUEST);
@@ -41,23 +42,33 @@ export class CvsService {
       ...userCvDetails,
       user,
     }); 
-    return await this.userCvRepoitory.save(newUserCVs);
+    if (file) {
+      const picture = new Pictures()
+      picture.fileName = file.path
+      newUserCVs.picture = picture
+    }
+
+    console.log(newUserCVs);
+    
+   //  return newUserCVs
+     return await this.userCvRepoitory.save(newUserCVs);
 
   }
-  async updateUserCv(id: number, userCvDetails: UpdateUserCvsParams) {
+  async updateUserCv(id: number, userCvDetails: UpdateUserCvsParams, file: Express.Multer.File) {
     const UserCv = await this.userCvRepoitory.findOne({
       where: {
         id: id,
-      },
-      relations: {
-        education: true
       }
     });
 
     if (!UserCv) {
       throw new HttpException('user CV not found', HttpStatus.BAD_REQUEST);
     }
-
+    if (file) {
+      const picture = new Pictures()
+      picture.fileName = file.path
+      UserCv.picture = picture
+    }
     const updatedCV = await this.userCvRepoitory.save(
       {
         ... UserCv,

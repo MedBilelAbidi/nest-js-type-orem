@@ -10,6 +10,7 @@ export type UpateUserCVsDto = {
     skills: string;
     certif: string;
     language: string;
+    pictures?: any;
     education?: UpadateCvDetailsDto[]
     experience?: UpadateCvDetailsDto[]
     projects?: UpadateCvDetailsDto[]

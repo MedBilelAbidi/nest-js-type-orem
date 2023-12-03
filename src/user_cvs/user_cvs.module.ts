@@ -8,13 +8,32 @@ import { EducationDegree } from 'src/typeorm/entities/Education';
 import { Experience } from 'src/typeorm/entities/Experience';
 import { Projects } from 'src/typeorm/entities/Projects';
 import { MulterModule } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { v4 as uuid } from 'uuid';
+import { Pictures } from 'src/typeorm/entities/Pictures';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([UserCv, User, EducationDegree, Experience, Projects]),    
+    imports: [TypeOrmModule.forFeature([UserCv, User, EducationDegree, Experience, Projects, Pictures]),    
     MulterModule.register({
-        dest: 'C:/Users/RAZER/Desktop/nest/nest-js-type-orem/pictures',
+        dest: 'C:/Users/LENOVO/Desktop/tp/react/minprojet/nest-js-type-orem/pictures',
+
+        storage: diskStorage({
+          // Destination storage path details
+          destination: (req: any, file: any, cb: any) => {
+            const uploadPath = "C:/Users/LENOVO/Desktop/tp/react/minprojet/nest-js-type-orem/pictures";
+            // Create folder if doesn't exist
+            cb(null, uploadPath);
+        },
+          // File modification details
+          filename: (req: any, file: any, callback) => {
+              // Calling the callback passing the random name generated with the original extension name
+              callback(null, `${uuid()}${file.originalname}`);
+          },
+      })
       }),],
     controllers: [CvsController],
     providers: [CvsService],
 })
 export class UserCvsModule {}
+
+

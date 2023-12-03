@@ -18,6 +18,8 @@ export class AbstractEntity<T> {
 
   @UpdateDateColumn ()
   updatedAt: Date;
+
+  
   constructor(entity: Partial<T>) {
     Object.assign(this, entity);
   }

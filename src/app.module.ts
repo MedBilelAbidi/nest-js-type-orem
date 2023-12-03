@@ -11,7 +11,8 @@ import { EducationDegree } from './typeorm/entities/Education';
 import { Experience } from './typeorm/entities/Experience';
 import { Projects } from './typeorm/entities/Projects';
 import { Education_Projects } from './typeorm/entities/Education_Projects';
- 
+import { Pictures } from 'src/typeorm/entities/Pictures';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -21,9 +22,10 @@ import { Education_Projects } from './typeorm/entities/Education_Projects';
       username: 'root',
       password: '',
       database: 'test_nestjs_db',
-      entities: [User, Profile, UserCv, EducationDegree, Experience, Projects, Education_Projects ],
+      entities: [User, Profile, UserCv, EducationDegree, Experience, Projects, Education_Projects, Pictures ],
       synchronize: true,
     }),
+
 
     UsersModule,
     UserCvsModule,

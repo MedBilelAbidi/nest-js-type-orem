@@ -13,7 +13,7 @@ export class CvsController {
        return this.userCVservice.fetchUserCvs()
     }
 
-    isJSONString(str) {
+    isJSONString(str: string) {
         try {
           return JSON.parse(str);
         } catch (error) {
@@ -39,15 +39,21 @@ export class CvsController {
                 createUserCvDto[key] = this.isJSONString(createUserCvDto[key])
         })
         
-        return createUserCvDto
-        // return this.userCVservice.createUserCv(id , createUserCvDto)
+        
+         return this.userCVservice.createUserCv(id , createUserCvDto, file)
     }
-    @Post('up/upload')
+    @Patch(':id')
     @UseInterceptors(FileInterceptor('file'))
-    uploadFile(@UploadedFile() file: Express.Multer.File) {
-      return file
-    } 
-
+    updateUserCv(@Param('id', ParseIntPipe) id: number, @Body() updateUserCvDto: UpateUserCVsDto,
+    @UploadedFile(
+      new ParseFilePipe({
+          validators: [
+              new FileTypeValidator({fileType: 'image/*'})
+          ]
+      })
+  ) file: Express.Multer.File){
+        return this.userCVservice.updateUserCv(id, updateUserCvDto, file)
+    }
     @Delete(':id')
     deleteUserCv(@Param('id', ParseIntPipe) id: number){
         return this.userCVservice.deleteUserCvById(id)
@@ -56,8 +62,5 @@ export class CvsController {
     getCvByUserId(@Param('id', ParseIntPipe) id: number){
         return this.userCVservice.fetchUserCvById(id)
     }
-    @Patch(':id')
-    updateUserCv(@Param('id', ParseIntPipe) id: number, @Body() updateUserCvDto: UpateUserCVsDto){
-        return this.userCVservice.updateUserCv(id, updateUserCvDto)
-    }
+
 }

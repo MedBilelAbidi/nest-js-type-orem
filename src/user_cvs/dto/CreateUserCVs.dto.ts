@@ -10,6 +10,7 @@ export type CreateUserCVsDto = {
     skills: string;
     certif: string;
     language: string;
+    pictures?: any;
     education?: CreateCvDetailsDto[]
     experience?: CreateCvDetailsDto[]
     projects?: CreateCvDetailsDto[]

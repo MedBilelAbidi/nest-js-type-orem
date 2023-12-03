@@ -1,9 +1,10 @@
-import  { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import  { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { User } from './User';
 import { EducationDegree } from './Education';
 import { Experience } from './Experience';
 import { Projects } from './Projects';
 import { Education_Projects } from './Education_Projects';
+import { Pictures } from './Pictures';
 
 @Entity({ name: 'user_cv' })
 export class UserCv {
@@ -57,4 +58,10 @@ export class UserCv {
   
   @OneToMany(()=> Education_Projects , (educationProject)=> educationProject.userCV ,  { cascade: true, eager: true} )
   educationProjects : Education_Projects[];  
+
+
+  @OneToOne(()=> Pictures, picture => picture.cv , { nullable: true , cascade: true , eager: true} )
+  @JoinColumn()
+  picture : Pictures  
+  
 }
