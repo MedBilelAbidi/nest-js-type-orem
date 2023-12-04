@@ -52,6 +52,11 @@ export class CvsController {
           ]
       })
   ) file: Express.Multer.File){
+
+    
+    Object.keys(updateUserCvDto).map(key => {
+        updateUserCvDto[key] = this.isJSONString(updateUserCvDto[key])
+})
         return this.userCVservice.updateUserCv(id, updateUserCvDto, file)
     }
     @Delete(':id')

@@ -60,7 +60,7 @@ export class UserCv {
   educationProjects : Education_Projects[];  
 
 
-  @OneToOne(()=> Pictures, picture => picture.cv , { nullable: true , cascade: true , eager: true} )
+  @OneToOne(()=> Pictures, picture => picture.cv , {  cascade: true , eager: true} )
   @JoinColumn()
   picture : Pictures  
   

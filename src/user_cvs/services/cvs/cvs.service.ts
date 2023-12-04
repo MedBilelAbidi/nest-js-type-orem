@@ -21,13 +21,12 @@ export class CvsService {
   fetchUserCvs() {
     return this.userCvRepoitory.find();
   }
-  fetchUserCvById(id: number) {
-    return this.userCvRepoitory.findOne({where : {
+  async fetchUserCvById(id: number) {
+    console.log(id);
+    
+    return await this.userCvRepoitory.findOne({where : {
       id : id
-    }
-  , relations : {
-    education : true,
-  }},);
+    }});
   }
   deleteUserCvById(id: number) {
     return this.userCvRepoitory.delete({ id });
@@ -60,7 +59,7 @@ export class CvsService {
         id: id,
       }
     });
-
+    
     if (!UserCv) {
       throw new HttpException('user CV not found', HttpStatus.BAD_REQUEST);
     }

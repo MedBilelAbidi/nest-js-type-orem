@@ -15,12 +15,12 @@ import { Pictures } from 'src/typeorm/entities/Pictures';
 @Module({
     imports: [TypeOrmModule.forFeature([UserCv, User, EducationDegree, Experience, Projects, Pictures]),    
     MulterModule.register({
-        dest: 'C:/Users/LENOVO/Desktop/tp/react/minprojet/nest-js-type-orem/pictures',
+        dest: 'pictures',
 
         storage: diskStorage({
           // Destination storage path details
           destination: (req: any, file: any, cb: any) => {
-            const uploadPath = "C:/Users/LENOVO/Desktop/tp/react/minprojet/nest-js-type-orem/pictures";
+            const uploadPath = "pictures";
             // Create folder if doesn't exist
             cb(null, uploadPath);
         },
