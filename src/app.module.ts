@@ -12,6 +12,7 @@ import { Experience } from './typeorm/entities/Experience';
 import { Projects } from './typeorm/entities/Projects';
 import { Education_Projects } from './typeorm/entities/Education_Projects';
 import { Pictures } from 'src/typeorm/entities/Pictures';
+import { Thumbnails } from './typeorm/entities/Thumbnails';
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { Pictures } from 'src/typeorm/entities/Pictures';
       username: 'root',
       password: '',
       database: 'test_nestjs_db',
-      entities: [User, Profile, UserCv, EducationDegree, Experience, Projects, Education_Projects, Pictures ],
+      entities: [User, Profile, UserCv, EducationDegree, Experience, Projects, Education_Projects, Pictures, Thumbnails ],
       synchronize: true,
     }),
 

@@ -5,6 +5,7 @@ import { Experience } from './Experience';
 import { Projects } from './Projects';
 import { Education_Projects } from './Education_Projects';
 import { Pictures } from './Pictures';
+import { Thumbnails } from './Thumbnails';
 
 @Entity({ name: 'user_cv' })
 export class UserCv {
@@ -63,5 +64,9 @@ export class UserCv {
   @OneToOne(()=> Pictures, picture => picture.cv , {  cascade: true , eager: true} )
   @JoinColumn()
   picture : Pictures  
+  
+  @OneToOne(()=> Thumbnails, picture => picture.cv , {  cascade: true } )
+  @JoinColumn()
+  thumbnail : Thumbnails  
   
 }

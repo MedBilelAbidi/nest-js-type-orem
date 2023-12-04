@@ -21,11 +21,11 @@ export class CvsService {
   fetchUserCvs() {
     return this.userCvRepoitory.find();
   }
-  async fetchUserCvById(id: number) {
-    console.log(id);
-    
+  async fetchUserCvById(id: number) {  
     return await this.userCvRepoitory.findOne({where : {
       id : id
+    }, relations: {
+      thumbnail: true
     }});
   }
   deleteUserCvById(id: number) {
