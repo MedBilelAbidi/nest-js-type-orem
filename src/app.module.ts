@@ -13,6 +13,8 @@ import { Projects } from './typeorm/entities/Projects';
 import { Education_Projects } from './typeorm/entities/Education_Projects';
 import { Pictures } from 'src/typeorm/entities/Pictures';
 import { Thumbnails } from './typeorm/entities/Thumbnails';
+import { ConfigModule } from '@nestjs/config';
+
 
 @Module({
   imports: [
@@ -26,7 +28,10 @@ import { Thumbnails } from './typeorm/entities/Thumbnails';
       entities: [User, Profile, UserCv, EducationDegree, Experience, Projects, Education_Projects, Pictures, Thumbnails ],
       synchronize: true,
     }),
+    ConfigModule.forRoot({
+      isGlobal: true,
 
+    }),
 
     UsersModule,
     UserCvsModule,

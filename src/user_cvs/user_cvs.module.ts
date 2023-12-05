@@ -11,26 +11,31 @@ import { MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { v4 as uuid } from 'uuid';
 import { Pictures } from 'src/typeorm/entities/Pictures';
+import {extname} from 'path';
+
+
 
 @Module({
     imports: [TypeOrmModule.forFeature([UserCv, User, EducationDegree, Experience, Projects, Pictures]),    
     MulterModule.register({
-        dest: 'pictures',
+        dest: 'C:/xampp/htdocs/nestjs/pictures',
 
         storage: diskStorage({
           // Destination storage path details
           destination: (req: any, file: any, cb: any) => {
-            const uploadPath = "pictures";
+            const uploadPath = "C:/xampp/htdocs/nestjs/pictures";
             // Create folder if doesn't exist
             cb(null, uploadPath);
         },
           // File modification details
-          filename: (req: any, file: any, callback) => {
+          filename: (req, file, callback) => {            
               // Calling the callback passing the random name generated with the original extension name
-              callback(null, `${uuid()}${file.originalname}`);
+              callback(null, `${uuid()}${extname(file.originalname)}`);
           },
       })
-      }),],
+      }),
+      
+    ],
     controllers: [CvsController],
     providers: [CvsService],
 })

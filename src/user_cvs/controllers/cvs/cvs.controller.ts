@@ -1,5 +1,5 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe,ParseFilePipe, Post, Patch, UseInterceptors, UploadedFile, FileTypeValidator } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Patch, UseInterceptors,  UploadedFiles } from '@nestjs/common';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { CreateUserCVsDto } from 'src/user_cvs/dto/CreateUserCVs.dto';
 import { UpateUserCVsDto } from 'src/user_cvs/dto/UpateUserCVs.dto';
 import { CvsService } from 'src/user_cvs/services/cvs/cvs.service';
@@ -22,42 +22,33 @@ export class CvsController {
       }
     
     @Post(':id' )
-    @UseInterceptors(FileInterceptor('file'))
+    @UseInterceptors(FileFieldsInterceptor([
+        { name: 'picture', maxCount: 1 },
+        { name: 'thumbnail', maxCount: 1 },
+      ]))
     createUserCv(@Param('id', ParseIntPipe) id: number, @Body() createUserCvDto: CreateUserCVsDto , 
-    @UploadedFile(
-        new ParseFilePipe({
-            validators: [
-                new FileTypeValidator({fileType: 'image/*'})
-            ]
-        })
-    ) file: Express.Multer.File){
-        console.log('post id');
-        console.log(file);
-        console.log(createUserCvDto);
+    @UploadedFiles() files: { picture?: Express.Multer.File[], thumbnail?: Express.Multer.File[] }){
+   
 
         Object.keys(createUserCvDto).map(key => {
                 createUserCvDto[key] = this.isJSONString(createUserCvDto[key])
         })
         
-        
-         return this.userCVservice.createUserCv(id , createUserCvDto, file)
+        return this.userCVservice.createUserCv(id , createUserCvDto, files)
     }
     @Patch(':id')
-    @UseInterceptors(FileInterceptor('file'))
+    @UseInterceptors(FileFieldsInterceptor([
+        { name: 'picture', maxCount: 1 },
+        { name: 'thumbnail', maxCount: 1 },
+      ]))
     updateUserCv(@Param('id', ParseIntPipe) id: number, @Body() updateUserCvDto: UpateUserCVsDto,
-    @UploadedFile(
-      new ParseFilePipe({
-          validators: [
-              new FileTypeValidator({fileType: 'image/*'})
-          ]
-      })
-  ) file: Express.Multer.File){
+    @UploadedFiles() files: { picture?: Express.Multer.File[], thumbnail?: Express.Multer.File[] }){
 
     
     Object.keys(updateUserCvDto).map(key => {
         updateUserCvDto[key] = this.isJSONString(updateUserCvDto[key])
 })
-        return this.userCVservice.updateUserCv(id, updateUserCvDto, file)
+        return this.userCVservice.updateUserCv(id, updateUserCvDto, files)
     }
     @Delete(':id')
     deleteUserCv(@Param('id', ParseIntPipe) id: number){

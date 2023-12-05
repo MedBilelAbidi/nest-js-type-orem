@@ -45,23 +45,23 @@ export class UserCv {
   @UpdateDateColumn ()
   updatedAt: Date;
 
-  @ManyToOne(()=> User , (user)=> user.userCvs)
+  @ManyToOne(()=> User , (user)=> user.userCvs , {  cascade: true })
   user: User
 
-  @OneToMany(()=> EducationDegree, (degree)=> degree.userCV ,  { cascade: true, eager: true} )
+  @OneToMany(()=> EducationDegree, (degree)=> degree.userCV, {  cascade: true }  )
   education : EducationDegree[];  
 
-  @OneToMany(()=> Experience, (exp)=> exp.userCV ,  { cascade: true, eager: true} )
+  @OneToMany(()=> Experience, (exp)=> exp.userCV, {  cascade: true }  )
   experience : Experience[];  
 
-  @OneToMany(()=> Projects, (project)=> project.userCV ,  { cascade: true, eager: true} )
+  @OneToMany(()=> Projects, (project)=> project.userCV , {  cascade: true } )
   projects : Projects[]; 
   
-  @OneToMany(()=> Education_Projects , (educationProject)=> educationProject.userCV ,  { cascade: true, eager: true} )
+  @OneToMany(()=> Education_Projects , (educationProject)=> educationProject.userCV , {  cascade: true }  )
   educationProjects : Education_Projects[];  
 
 
-  @OneToOne(()=> Pictures, picture => picture.cv , {  cascade: true , eager: true} )
+  @OneToOne(()=> Pictures, picture => picture.cv , {  cascade: true } )
   @JoinColumn()
   picture : Pictures  
   
