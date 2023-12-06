@@ -7,7 +7,7 @@ export class Projects extends AbstractEntity<Projects> {
 
 
 
-  @ManyToOne(()=> UserCv , (cv)=> cv.projects , { orphanedRowAction: 'delete' })
+  @ManyToOne(()=> UserCv , (cv)=> cv.projects , { orphanedRowAction: 'delete',  onDelete: "CASCADE" })
   @JoinColumn()
   userCV: UserCv
 }

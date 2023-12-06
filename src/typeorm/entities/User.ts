@@ -21,7 +21,7 @@ export class User {
   @JoinColumn({ name: 'profileId' })
   profile : Profile  
 
-  @OneToMany(()=> UserCv, (userCv)=> userCv.user)
+  @OneToMany(()=> UserCv, (userCv)=> userCv.user ,{  cascade: true })
   @JoinColumn()
   userCvs : UserCv[];  
 }

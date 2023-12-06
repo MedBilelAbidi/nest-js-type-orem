@@ -39,13 +39,31 @@ export class UserCv {
   @Column()
   language: string;
 
+  @Column({default: true})
+  enablePhoto: boolean;
+  
+  @Column({default: true})
+  enableBio: boolean;
+
+  @Column({default: true})
+  enableInfos: boolean;
+
+  @Column({default: true})
+  enableAddresse: boolean;
+
+  @Column({default: true})
+  enablePhone: boolean;
+
+  @Column({default: true})
+  enableEmail: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn ()
   updatedAt: Date;
 
-  @ManyToOne(()=> User , (user)=> user.userCvs , {  cascade: true })
+  @ManyToOne(()=> User , (user)=> user.userCvs )
   user: User
 
   @OneToMany(()=> EducationDegree, (degree)=> degree.userCV, {  cascade: true }  )

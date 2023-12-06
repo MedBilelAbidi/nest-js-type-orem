@@ -16,7 +16,7 @@ export class Pictures {
   @UpdateDateColumn ()
   updatedAt: Date;
   
-  @OneToOne(() => UserCv, cv => cv.picture ,  { orphanedRowAction: 'delete' }) // Define the inverse relationship
+  @OneToOne(() => UserCv, cv => cv.picture ,  { orphanedRowAction: 'delete',  onDelete: "CASCADE" }) // Define the inverse relationship
   cv: UserCv;
   
   constructor(entity?: Pictures) {

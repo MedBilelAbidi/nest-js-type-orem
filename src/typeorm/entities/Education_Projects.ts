@@ -7,7 +7,7 @@ export class Education_Projects extends AbstractEntity<Education_Projects> {
 
 
 
-  @ManyToOne(()=> UserCv , (cv)=> cv.educationProjects , { orphanedRowAction: 'delete' })
+  @ManyToOne(()=> UserCv , (cv)=> cv.educationProjects , { orphanedRowAction: 'delete' , onDelete: "CASCADE"})
   @JoinColumn()
   userCV: UserCv
 }
