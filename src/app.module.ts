@@ -15,15 +15,14 @@ import { Pictures } from 'src/typeorm/entities/Pictures';
 import { Thumbnails } from './typeorm/entities/Thumbnails';
 import { ConfigModule } from '@nestjs/config';
 
-
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: 'mysql-db',
       port: 3306,
       username: 'root',
-      password: '',
+      password: 'root',
       database: 'test_nestjs_db',
       entities: [User, Profile, UserCv, EducationDegree, Experience, Projects, Education_Projects, Pictures, Thumbnails ],
       synchronize: true,

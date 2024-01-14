@@ -1,4 +1,8 @@
-import { CreateCvDetailsDto } from "./CreateCvDetails.dto";
+type CreateCvDetailsDto = {
+  name: string
+  date: string;
+  discription: string;
+}
 
 export type CreateUserCVsDto = {
     name: string;

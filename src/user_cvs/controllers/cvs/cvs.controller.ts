@@ -48,6 +48,7 @@ export class CvsController {
     Object.keys(updateUserCvDto).map(key => {
         updateUserCvDto[key] = this.isJSONString(updateUserCvDto[key])
 })
+
         return this.userCVservice.updateUserCv(id, updateUserCvDto, files)
     }
     @Delete(':id')

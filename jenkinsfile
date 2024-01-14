@@ -1,0 +1,35 @@
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+           stage('Cleanup') {
+            steps {
+                script {
+                    // Stop and remove existing containers with the same name
+                    bat 'docker rm -f nest-js-type-orem-react-app-api-1 || true'
+                }
+            }
+        }
+
+        stage('Build and Deploy') {
+            steps {
+                script {
+                    // Down all Docker containers
+                    bat 'docker-compose down -v'
+                    // Build the Docker image 
+                    bat "docker-compose build"
+
+                    // Run Docker Compose
+                    bat 'docker-compose up -d'
+                }
+            }
+        }
+    }
+}
+

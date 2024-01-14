@@ -1,0 +1,10 @@
+version : 2
+authtoken: 2avHkKvqgpMMz0uNcR6kgFPiXYz_3y5rYQrTC9aDxRtxg7ho4
+tunnels:
+  website:
+    addr: nest-js-type-orem-react-app-api-1:3000
+    schemes:
+      - https
+    inspect: true
+    proto: http
+    domain: vertically-worthy-macaque.ngrok-free.app
