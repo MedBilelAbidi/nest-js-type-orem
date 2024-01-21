@@ -1,1 +1,5 @@
-CREATE DATABASE test_nestjs_db;
+SET @dbname = 'react_cv_db';
+
+IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = @dbname) THEN
+  CREATE DATABASE react_cv_db;
+END IF;

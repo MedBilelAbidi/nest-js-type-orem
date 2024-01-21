@@ -23,7 +23,7 @@ import { ConfigModule } from '@nestjs/config';
       port: 3306,
       username: 'root',
       password: 'root',
-      database: 'test_nestjs_db',
+      database: 'react_cv_db',
       entities: [User, Profile, UserCv, EducationDegree, Experience, Projects, Education_Projects, Pictures, Thumbnails ],
       synchronize: true,
     }),
